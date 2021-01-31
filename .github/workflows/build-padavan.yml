@@ -37,15 +37,15 @@ jobs:
         sudo mkdir -p /opt/images/
     - name: Build Firmware
       env:
-        TNAME: K2P-5.0
+        1: K2P-5.0
       run: |
         cd /opt/rt-n56u/trunk
-        if [ ! -f configs/templates/K2P-5.0.config ] ; then
-        echo "configs/templates/$TNAME.config not found "
+        if [ ! -f configs/templates/$1.config ] ; then
+        echo "configs/templates/$1.config not found "
         exit 1
         fi
         sudo ./clear_tree
-        sudo ./build_firmware_modify K2P-5.0
+        sudo ./build_firmware_modify $1
         sudo mv -f images/*.trx /opt/images/
     - name : Upload packages
       uses: actions/upload-artifact@master
